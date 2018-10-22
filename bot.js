@@ -1,5 +1,6 @@
 const Discord = require('discord.js');
 const bot = new Discord.Client();
+/*
 const prefix = '!';
 const help = '!total, !day';
 var guildID = '326996219782234115';
@@ -79,4 +80,5 @@ bot.on('message', (message)=>{
     }
  
 });
+*/
 client.login(process.env.BOT_TOKEN);
