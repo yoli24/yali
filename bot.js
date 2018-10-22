@@ -76,7 +76,7 @@ bot.on('message', (message)=>{
             emdText+=name+" time: "+time+" "+timeType+"\n";
             x.push(i);
             }
-            emd.addField(startDate+" - "+new Date(), emdText);
+            emd = emd.addField(startDate+" - "+new Date(), emdText);
             message.channel.send(emd);
             usersIDS=x;
             break;
