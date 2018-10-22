@@ -1,6 +1,5 @@
 const Discord = require('discord.js');
 const bot = new Discord.Client();
-/*
 const prefix = '!';
 const help = '!total, !day';
 var guildID = '326996219782234115';
@@ -8,6 +7,7 @@ var channelIDS = ['438405492612792331','443111510764552215','447860504174657546'
 var usersIDS = [];
 var data = {};
 const tickTimeSpan = 10000; //10 seconds
+var startDate;
 
 function TimeTick(){
     var guild = bot.guilds.find("id", guildID);
@@ -32,10 +32,10 @@ function TimeTick(){
 
 bot.on('ready', async()=>{
     console.log("\x1b[42m%s\x1b[0m", `Connected to ${bot.user.tag}!`);
-    bot.user.setActivity("test");
+    bot.user.setActivity("!help");
     TimeTick();
     bot.setInterval(TimeTick, tickTimeSpan);
-
+    startDate=new Date();
 });
 bot.on('message', (message)=>{
     if(!(message.channel.type=="dm")) return;
@@ -49,10 +49,15 @@ bot.on('message', (message)=>{
     else{
         var cmd = message.content.split(' ')[0];
         switch(cmd){
-            case prefix+"day":
+            case prefix+"help":
+            message.reply(help);
+            break;
+            case prefix+"total":
             var x = [];
             var i, name;
             var timeType, time;
+            var emd = new Discord.RichEmbed();
+            var emdText = "";
             while(usersIDS.length>0){
             i = usersIDS.pop();
             name = bot.users.find('id', i);
@@ -68,17 +73,22 @@ bot.on('message', (message)=>{
                 }
             }
             time=Math.floor(time);
-            message.channel.send(name+" time: "+time+" "+timeType);
+            emdText+=name+" time: "+time+" "+timeType+"\n";
             x.push(i);
             }
+            emd.addField(startDate+" - "+new Date(), emdText);
+            message.channel.send(emd);
             usersIDS=x;
             break;
-            case prefix+"total":
-
+            case prefix+"day":
+            message.reply('this command is not ready yet.');
+            break;
+            default:
+            message.reply(help);
             break;
         }
     }
  
 });
-*/
+
 bot.login(process.env.BOT_TOKEN);
