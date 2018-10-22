@@ -56,8 +56,6 @@ bot.on('message', (message)=>{
             var x = [];
             var i, name;
             var timeType, time;
-            var emd = new Discord.RichEmbed();
-            var emdText = "";
                 
             while(usersIDS.length>0){
             i = usersIDS.pop();
@@ -74,13 +72,10 @@ bot.on('message', (message)=>{
                 }
             }
             time=Math.floor(time);
-            emdText+=name+" time: "+time+" "+timeType+"\n";
             message.channel.send(name+" time: "+time+" "+timeType);
             x.push(i);
             }
                 
-            emd.addField(startDate+" - "+new Date(), emdText);
-            message.channel.send(emd);
             usersIDS=x;
             break;
             case prefix+"day":
