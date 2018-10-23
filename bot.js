@@ -106,7 +106,7 @@ bot.on('message', (message)=>{
             //message.channel.send(name+" time: "+time+" "+timeType);
             x.push(i);
             }
-                conslog.log(emdText);
+                console.log(emdText);
                 console.log(data[usersIDS[0]]);
             try{
             var emd = new Discord.RichEmbed();
