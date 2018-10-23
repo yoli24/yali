@@ -107,7 +107,8 @@ bot.on('message', (message)=>{
             //message.channel.send(name+" time: "+time+" "+timeType);
             x.push(i);
             }
-                if(emdText==null){
+                console.log('text:'+emdText);
+                if(emdText.length<10){
                     return;
                 }
             try{
