@@ -18,10 +18,8 @@ function CheckDate(){
     }
 }
 function TimeTick(){
-    CheckDate();
     var guild = bot.guilds.find("id", guildID);
     guild.members.forEach(function(elem){
-        if(elem
         if(elem.voiceChannel!=null){
             for(var i=0;i<channelIDS.length;i++){
                 if(elem.voiceChannel.id==channelIDS[i]){
@@ -37,7 +35,7 @@ function TimeTick(){
                 }
             }
         }
-         else if(elem.id=='242360233593274369'){
+        else if(elem.id=='242360233593274369'){
             if(!usersIDS.includes(elem.id)){
                 usersIDS.push(elem.id);
             }  
