@@ -99,7 +99,7 @@ function TimeTick(){
 
 bot.on('ready', async()=>{
     console.log("\x1b[42m%s\x1b[0m", `Connected to ${bot.user.tag}!`);
-    bot.user.setActivity("!help","PLAYING");
+    bot.user.setStatus("online", "!help");
     //bot.user.setActivity("!help");
     TimeTick();
     bot.setInterval(TimeTick, tickTimeSpan);
