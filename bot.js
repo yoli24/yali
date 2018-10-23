@@ -125,13 +125,14 @@ bot.on('message', (message)=>{
             case prefix+"help":
             message.reply(help);
             break;
+                
             case prefix+"total":
             
             string = totalTimeUsersData.Users.split(',');
             i, name;
             timeType, time;
             emdText = "";     
-                
+                console.log(string);
             while(string.length>0){
             i=string.pop();
             name = bot.users.find('id', i);
