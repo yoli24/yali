@@ -79,6 +79,7 @@ bot.on('message', (message)=>{
             message.reply(help);
             break;
             case prefix+"total":
+                console.log(usersIDS.length);
                 if(usersIDS.length==0)
                     return;
             var x = [];
