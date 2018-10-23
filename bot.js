@@ -9,7 +9,16 @@ var data = {};
 const tickTimeSpan = 10000; //10 seconds
 var startDate;
 
+function CheckDate(){
+    var dateNow = new Date();
+    if(dateNow.getDay()!=dateNow.getDay()){
+        startDate = new Date();
+        usersIDS=[];
+        data={};
+    }
+}
 function TimeTick(){
+    CheckDate();
     var guild = bot.guilds.find("id", guildID);
     guild.members.forEach(function(elem){
         if(elem.voiceChannel!=null){
@@ -56,6 +65,8 @@ bot.on('message', (message)=>{
             var x = [];
             var i, name;
             var timeType, time;
+            var emd = new Discord.RichEmbed();
+            var emdText = "";     
                 
             while(usersIDS.length>0){
             i = usersIDS.pop();
@@ -72,10 +83,17 @@ bot.on('message', (message)=>{
                 }
             }
             time=Math.floor(time);
-            message.channel.send(name+" time: "+time+" "+timeType);
+            emdText+=name+" time: "+time+" "+timeType;
+            //message.channel.send(name+" time: "+time+" "+timeType);
             x.push(i);
             }
-                
+            try{
+            emd.addField(startDate, emdText);
+            message.channel.send(emd);
+            }
+            catch(err){
+                //console.log('errored');
+            }    
             usersIDS=x;
             break;
             case prefix+"day":
