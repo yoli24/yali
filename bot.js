@@ -116,7 +116,7 @@ bot.on('message', (message)=>{
             message.channel.send(emd);
             }
             catch(err){
-                //console.log('errored');
+                message.channel.send('errored');
             }    
             usersIDS=x;
             break;
