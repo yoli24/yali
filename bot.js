@@ -85,7 +85,6 @@ bot.on('message', (message)=>{
             var x = [];
             var i, name;
             var timeType, time;
-            var emd = new Discord.RichEmbed();
             var emdText = "";     
                 
             while(usersIDS.length>0){
@@ -112,6 +111,7 @@ bot.on('message', (message)=>{
                     return;
                 }
             try{
+            var emd = new Discord.RichEmbed();
             emd.addField(startDate, emdText);
             message.channel.send(emd);
             }
