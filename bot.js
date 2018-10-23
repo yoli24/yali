@@ -102,16 +102,13 @@ bot.on('message', (message)=>{
                 }
             }
             time=Math.floor(time);
-            emdText+="1 "+name+" time: "+time+" "+timeType;
+            emdText+=name+" time: "+time+" "+timeType+"\n";
             //message.channel.send(name+" time: "+time+" "+timeType);
             x.push(i);
             }
                 console.log(emdText);
-                console.log(data[usersIDS[0]]);
             try{
-            var emd = new Discord.RichEmbed();
-            emd.addField(startDate, emdText);
-            message.channel.send(emd);
+            message.channel.send("```cs"+"\n"+emdText+"\n```");
             }
             catch(err){
                 message.channel.send('errored');
