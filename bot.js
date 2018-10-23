@@ -94,7 +94,6 @@ bot.on('message', (message)=>{
             time=Math.floor(time);
             if(onlineUsers.includes(i)){
                 emdText+="[Online]"+name+" time: "+time+" "+timeType+"\n";
-
             }
             else{
                 emdText+=name+" time: "+time+" "+timeType+"\n";
