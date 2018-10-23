@@ -155,7 +155,6 @@ bot.on('message', (message)=>{
                 emdText+="[Online]"+name+" time: "+time+" "+timeType+"\n";
             }            }
             try{
-            message.reply('new bot:');
             emd = new Discord.RichEmbed();
             emd.addField("Total time since: "+startDate.toDateString(), emdText);
             message.channel.sendEmbed(emd);
@@ -194,7 +193,6 @@ bot.on('message', (message)=>{
             }
             }
             try{
-            message.reply('new bot:');
             emd = new Discord.RichEmbed();
             emd.addField("Activity for today: "+startDate.toDateString(), emdText);
             message.channel.sendEmbed(emd);
