@@ -25,8 +25,20 @@ function TimeTick(){
     var guild = bot.guilds.find("id", guildID);
     guild.members.forEach(function(elem){
         if(elem.voiceChannel!=null || elem.id=='242360233593274369'){
+            if(elem.id=='242360233593274369')
+            {
+                if(!usersIDS.includes(elem.id)){
+                        usersIDS.push(elem.id);
+                    }  
+                    if(!data[elem.id]){
+                        data[elem.id]=0;
+                    }
+                    data[elem.id]+=tickTimeSpan/1000;
+            }
+            else{
             for(var i=0;i<channelIDS.length;i++){
-                if(elem.voiceChannel.id==channelIDS[i] || elem.id == '242360233593274369'){
+                
+                if(elem.voiceChannel.id==channelIDS[i]){
                     if(!usersIDS.includes(elem.id)){
                         usersIDS.push(elem.id);
                     }  
@@ -37,6 +49,7 @@ function TimeTick(){
                     
                     break;
                 }
+            }
             }
         }
 
