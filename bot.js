@@ -79,6 +79,8 @@ bot.on('message', (message)=>{
             message.reply(help);
             break;
             case prefix+"total":
+                if(userIDS.length==0)
+                    return;
             var x = [];
             var i, name;
             var timeType, time;
