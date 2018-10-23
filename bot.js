@@ -22,6 +22,7 @@ function TimeTick(){
     //    "test":3
     //};
     //fs.writeFile('./totalTime.json', JSON.stringify(totalTime));
+    CheckDate();
     var guild = bot.guilds.find("id", guildID);
     guild.members.forEach(function(elem){
         if(elem.voiceChannel!=null || elem.id=='242360233593274369'){
