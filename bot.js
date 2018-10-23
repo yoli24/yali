@@ -107,6 +107,9 @@ bot.on('message', (message)=>{
             //message.channel.send(name+" time: "+time+" "+timeType);
             x.push(i);
             }
+                if(emdText==null){
+                    return;
+                }
             try{
             emd.addField(startDate, emdText);
             message.channel.send(emd);
