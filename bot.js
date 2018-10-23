@@ -79,7 +79,6 @@ bot.on('message', (message)=>{
             message.reply(help);
             break;
             case prefix+"total":
-                console.log(usersIDS.length);
                 if(usersIDS.length==0)
                     return;
             var x = [];
@@ -106,12 +105,14 @@ bot.on('message', (message)=>{
             //message.channel.send(name+" time: "+time+" "+timeType);
             x.push(i);
             }
-                console.log(emdText);
             try{
-            message.channel.send("```cs"+"\n"+emdText+"\n```");
+            var emd = new Discord.RichEmbed();
+            emd.addField(startDate, emdText);
+            message.channel.sendEmbed(emd);
+
+            //message.channel.send("```cs"+"\n"+emdText+"\n```");
             }
             catch(err){
-                message.channel.send('errored');
             }    
             usersIDS=x;
             break;
