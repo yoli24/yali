@@ -19,7 +19,7 @@ var startDate;
 
 
 function UpdateJsonFile(path, data){
-    fs.writeFile(path, JSON.stringify(data));
+    fs.writeFileSync(path, JSON.stringify(data));
 }
 
 function CheckDate(){
