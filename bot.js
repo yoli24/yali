@@ -106,10 +106,7 @@ bot.on('message', (message)=>{
             //message.channel.send(name+" time: "+time+" "+timeType);
             x.push(i);
             }
-                console.log('text:'+emdText);
-                if(emdText.length<10){
-                    return;
-                }
+                
             try{
             var emd = new Discord.RichEmbed();
             emd.addField(startDate, emdText);
