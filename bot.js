@@ -72,6 +72,8 @@ bot.on('message', (message)=>{
             break;
 
             case prefix+"today":
+                if(userIDS.length==0)
+                    return;
             i, name;
             timeType, time;
             emdText = "";     
