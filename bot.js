@@ -72,6 +72,7 @@ bot.on('message', (message)=>{
             break;
 
             case prefix+"today":
+                console.log(userIDS.length);
                 if(userIDS.length==0)
                     return;
             i, name;
