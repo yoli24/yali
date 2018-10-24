@@ -73,8 +73,10 @@ bot.on('message', (message)=>{
 
             case prefix+"today":
                 console.log(userIDS.length);
-                if(userIDS.length==0)
-                    return;
+                if(userIDS.length==0){
+                    message.reply('No activity today!');
+                    break;
+                }
             i, name;
             timeType, time;
             emdText = "";     
