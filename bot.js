@@ -14,7 +14,7 @@ var onlineUsers = [];
 
 function CheckDate(){
     var dateNow = new Date();
-    if(dateNow.getDay()!=dateNow.getDay()){
+    if(dateNow.getDay()!=startDate.getDay()){
         startDate = new Date();
         todayTimeData={};
         userIDS={};
