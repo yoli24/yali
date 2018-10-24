@@ -48,10 +48,10 @@ function TimeTick(){
 
 bot.on('ready', async()=>{
     console.log("\x1b[42m%s\x1b[0m", `Connected to ${bot.user.tag}!`);
-    bot.user.setStatus("online", "!help");
+     bot.user.setStatus("online", "!help");
+     startDate=new Date();
     TimeTick();
     bot.setInterval(TimeTick, tickTimeSpan);
-    startDate=new Date();
 
 });
 bot.on('message', (message)=>{
