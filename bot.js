@@ -15,7 +15,8 @@ function SendNotification(){
     for(var i =0; i<notifications.length;i++){
         var user = bot.users.find("id", notifications[i]);
         user.sendMessage("Sum for today:");
-        user.sendMessage(GenerateTodayMessage());
+        user.sendEmbed(GenerateTodayMessage());
+        //user.sendMessage(GenerateTodayMessage());
     }
 }
 
@@ -76,7 +77,8 @@ bot.on('message', (message)=>{
             break;
 
             case prefix+"today":
-              message.reply(GenerateTodayMessage());
+                message.channel.sendEmbed(GenerateTodayMessage());
+              //message.reply(GenerateTodayMessage());
             break;
 
             default:
