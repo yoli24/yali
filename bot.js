@@ -15,7 +15,8 @@ function SendNotification(){
     for(var i =0; i<notifications.length;i++){
         var user = bot.users.find("id", notifications[i]);
         user.sendMessage("Sum for today:");
-        user.sendEmbed(GenerateTodayMessage());
+        GenerateTodayMessage(user.channel);
+
         //user.sendMessage(GenerateTodayMessage());
     }
 }
@@ -88,9 +89,9 @@ bot.on('message', (message)=>{
     }
  
 });
-function GenerateTodayMessage(){
+function GenerateTodayMessage(channel){
     if(userIDS.length==0){
-        return 'No activity today! :(';
+        channel.send('No activity today! :(');
     }
     var i, name;
     var timeType, time;
@@ -119,8 +120,8 @@ function GenerateTodayMessage(){
     }
             emd = new Discord.RichEmbed();
             emd.addField("Activity for today: "+startDate.toDateString(), emdText);
-            //message.channel.sendEmbed(emd);       
+            channel.sendEmbed(emd);       
 
-            return emd;
+            
     }
 bot.login(process.env.BOT_TOKEN);
