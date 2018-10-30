@@ -92,6 +92,7 @@ bot.on('message', (message)=>{
 function GenerateTodayMessage(channel){
     if(userIDS.length==0){
         channel.send('No activity today! :(');
+        return;
     }
     var i, name;
     var timeType, time;
