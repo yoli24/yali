@@ -78,7 +78,7 @@ bot.on('message', (message)=>{
             break;
 
             case prefix+"today":
-                message.channel.sendEmbed(GenerateTodayMessage());
+                GenerateTodayMessage(message.channel);
               //message.reply(GenerateTodayMessage());
             break;
 
