@@ -6,9 +6,29 @@ var databaseJSON = {"Channel": '507100643761061898',
 "Values": []
 };
 class DataBaseClass {
+static SortArray(bot){
+
+    var object = [];
+    for(var i =0;i<databaseJSON.Users.length;i++){
+        object[i]={
+            "user":databaseJSON.Users[i], "value":databaseJSON.Values[i]
+        };
+    }
+
+    object.sort(function(a, b){return a.value - b.value});
+    object.reverse();
+
+    for(var i = 0; i < databaseJSON.Users.length;i++){
+        databaseJSON.Users[i] = object[i].user;
+        databaseJSON.Values[i]=object[i].value;
+    }
+    this.UpdateData(bot);
+}
 static DataToText(bot, channel){
+    this.SortArray(bot);
     var text = "";
     var time, user, timeType;
+    
     for(var i = 0; i < databaseJSON.Users.length; i++){
         user = bot.users.find(user => user.id == databaseJSON.Users[i]);
         
@@ -28,7 +48,7 @@ static DataToText(bot, channel){
             }
             time = parseFloat(Math.round(time * 100) / 100).toFixed(2);
           
-        text += user + " " + time+ " "+timeType;
+        text += user + " " + time+ " "+timeType+"\n";
     }
     var emb = new Discord.RichEmbed();
     emb.addField("Total Time", text);
