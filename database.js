@@ -28,6 +28,7 @@ static DownloadData(bot){
     channel.fetchMessage(messageID)
     .then(message =>{
         databaseJSON = JSON.parse(message.content);
+        console.log(message.content);
     })
     .catch(err=>{
         channel.send(JSON.stringify(databaseJSON));
