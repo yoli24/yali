@@ -5,8 +5,7 @@ const help = '!today';
 const tickTimeSpan = 10000; 
 
 var guildID = '326996219782234115';
-//var notifications = ['242360233593274369', '331103748376100897'];
-var notifications = ['242360233593274369'];
+var notifications = ['242360233593274369', '331103748376100897'];
 let todayTimeData = {};
 var startDate;
 var userIDS = [];
@@ -15,15 +14,16 @@ var onlineUsers = [];
 function SendNotification(){
     for(var i =0; i<notifications.length;i++){
         var user = bot.users.find("id", notifications[i]);
-        user.sendMessage("Summary for today:").then(GenerateTodayMessage(user.dmChannel));
+        user.sendMessage("Sum for today:");
+        GenerateTodayMessage(user.dmChannel);
+
+        //user.sendMessage(GenerateTodayMessage());
     }
 }
 
 function CheckDate(){
     var dateNow = new Date();
-    //dateNow.setHours(dateNow.getHours()-2);
-    if(dateNow.getSeconds()!=startDate.getSeconds()){
-    //if(dateNow.getDay()!=startDate.getDay()){
+    if(dateNow.getDay()!=startDate.getDay()){
         SendNotification();
         startDate = new Date();
         todayTimeData={};
@@ -58,7 +58,6 @@ bot.on('ready', async()=>{
      //bot.user.setStatus("online", "!help");
      startDate=new Date();
     //TimeTick();
-    //SendNotification();
     bot.setInterval(TimeTick, tickTimeSpan);
 
 });
