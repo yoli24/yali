@@ -61,6 +61,7 @@ bot.on('ready', async()=>{
     bot.setInterval(TimeTick, tickTimeSpan);
 
     DataBaseClass.DownloadData(bot);
+
 });
 bot.on('message', (message)=>{
     if(!(message.channel.type=="dm")) return;
@@ -83,6 +84,7 @@ bot.on('message', (message)=>{
             break;
 
             case prefix+"total":
+                message.reply("new bot:");
                 DataBaseClass.DataToText(bot, message.channel);
             break;
 
@@ -93,11 +95,28 @@ bot.on('message', (message)=>{
     }
  
 });
+function SortArray(){
+    var object = [];
+    for(var i =0;i<userIDS.length;i++){
+        object[i]={
+            "user":userIDS[i], "value":todayTimeData[i]
+        };
+    }
+
+    object.sort(function(a, b){return a.value - b.value});
+    //object.reverse();
+
+    for(var i = 0; i < userIDS.length;i++){
+        userIDS[i] = object[i].user;
+        todayTimeData[i] = object[i].value;
+    }
+}
 function GenerateTodayMessage(channel){
     if(userIDS.length==0){
         channel.send('No activity today! :(');
         return;
     }
+    SortArray();
     var i, name;
     var timeType, time;
     var emdText = "";     
@@ -116,7 +135,7 @@ function GenerateTodayMessage(channel){
                 }
             }
             time = parseFloat(Math.round(time * 100) / 100).toFixed(2);
-            
+
             if(onlineUsers.includes(i)){
                 emdText+="[Online]"+name+" time: "+time+" "+timeType+"\n";
             }
