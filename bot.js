@@ -11,7 +11,7 @@ var startDate;
 var userIDS = [];
 var onlineUsers = [];
 
-var DataBaseClass = require('./database.js');
+var DataBaseClass = require('.database.js');
 
 function SendNotification(){
     for(var i =0; i<notifications.length;i++){
@@ -61,7 +61,6 @@ bot.on('ready', async()=>{
     bot.setInterval(TimeTick, tickTimeSpan);
 
     DataBaseClass.DownloadData(bot);
-
 });
 bot.on('message', (message)=>{
     if(!(message.channel.type=="dm")) return;
