@@ -84,7 +84,6 @@ bot.on('message', (message)=>{
             break;
 
             case prefix+"total":
-                message.reply("new bot:");
                 DataBaseClass.DataToText(bot, message.channel);
             break;
 
