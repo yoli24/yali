@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const bot = new Discord.Client();
 const prefix = '!';
-const help = '!today';
+const help = '!today, !total, !help';
 const tickTimeSpan = 10000; 
 
 var guildID = '326996219782234115';
@@ -11,13 +11,13 @@ var startDate;
 var userIDS = [];
 var onlineUsers = [];
 
+var DataBaseClass = require('./database.js');
+
 function SendNotification(){
     for(var i =0; i<notifications.length;i++){
         var user = bot.users.find("id", notifications[i]);
         user.sendMessage("Sum for today:");
         GenerateTodayMessage(user.dmChannel);
-
-        //user.sendMessage(GenerateTodayMessage());
     }
 }
 
@@ -33,7 +33,7 @@ function CheckDate(){
 
 function TimeTick(){
     CheckDate();
-    var guild = bot.guilds.find("id", guildID);
+    var guild = bot.guilds.find(guild => guild.id==guildID);
     onlineUsers=[];
     guild.members.forEach(function(elem){
         if(elem.voiceChannel!=null){
@@ -45,9 +45,9 @@ function TimeTick(){
                        todayTimeData[elem.id]=0;
                    }
                    onlineUsers.push(elem.id);
-                   todayTimeData[elem.id]+=tickTimeSpan/1000;              
+                   todayTimeData[elem.id]+=tickTimeSpan/1000;   
+                   DataBaseClass.AddValue(bot, elem.id, tickTimeSpan/1000);           
                 }
-            
         }   
     });
 }
@@ -59,6 +59,8 @@ bot.on('ready', async()=>{
      startDate=new Date();
     //TimeTick();
     bot.setInterval(TimeTick, tickTimeSpan);
+
+    DataBaseClass.DownloadData(bot);
 
 });
 bot.on('message', (message)=>{
@@ -79,7 +81,10 @@ bot.on('message', (message)=>{
 
             case prefix+"today":
                 GenerateTodayMessage(message.channel);
-              //message.reply(GenerateTodayMessage());
+            break;
+
+            case prefix+"total":
+                DataBaseClass.DataToText(bot, message.channel);
             break;
 
             default:
@@ -111,7 +116,8 @@ function GenerateTodayMessage(channel){
                     timeType="hours";
                 }
             }
-            time=Math.floor(time);
+            time = parseFloat(Math.round(time * 100) / 100).toFixed(2);
+            
             if(onlineUsers.includes(i)){
                 emdText+="[Online]"+name+" time: "+time+" "+timeType+"\n";
             }
